@@ -1,0 +1,17 @@
+<div style="position: relative;">
+  <form (ngSubmit)="searchQuery()" [formGroup]="searchForm" style="position: relative; display: flex; flex-direction: column; align-items: center;">
+    <div style="position: relative; display: flex; flex-direction: column; width: max-content; padding: 1rem;">
+      <div style="flex-direction: row; position: relative; gap: 1rem; display: flex;">
+        <input formControlName="query" style="flex-grow: 1;" type="text" placeholder="search" />
+      </div>
+      <div *ngIf="movieSuggestions.length" style="background-color: white; padding: 0.5rem; border: 1px solid black; position: absolute; transform: translateY(2rem); width: calc(100% - 2rem);" >
+        <ul style="display: flex; flex-direction: column; gap: 0.25rem 0">
+          <ol class="auto-complete-li" (click)="onMovieSuggestionClicked(movieSuggestion.id)" *ngFor="let movieSuggestion of movieSuggestions">{{ movieSuggestion.title }}</ol>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <app-movie [mediaItem]="mediaItem" *ngFor="let mediaItem of mediaItems" />
+</div> 

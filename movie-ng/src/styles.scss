@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, app-root{
+    width: 100%;
+    font-size: 15px;
+    font-family: monospace;
+}
+
+.auto-complete-li{
+    user-select: none;
+    cursor: pointer;
+    transition: 200ms ease;
+}
+
+.auto-complete-li:hover {
+    background-color: black;
+    color: white;
+    padding: 0.15rem;
+    transform: scale(1.1);
+}

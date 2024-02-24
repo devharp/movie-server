@@ -1,19 +1,14 @@
-import express from 'express';
-import 'dotenv/config';
-import { resolve } from 'path';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fetch from 'node-fetch';
-import cors from 'cors';
-import { Config } from './config';
-const nodePath = resolve(process.argv[1]);
-const modulePath = resolve(fileURLToPath(import.meta.url));
-const isCLI = nodePath === modulePath;
-const Authorization = Config.auth;
+require('dotenv/config');
+const express = require('express');
+const fetch = require('node-fetch');
+const path = require('path');
+const cors = require('cors');
+const Authorization = process.env.AUTH || '';
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use('/', express.static(path.join(modulePath, '..', '..', 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
+
 app.get('/movies', async (req, res) => {
     return res.send(await getMovies());
 });
@@ -36,7 +31,7 @@ async function getMovies() {
     }
     return [];
 }
-export default function main(port = 3000) {
+function main(port = 3000) {
     app.listen(port, () => console.log(`App running on port: ${port}`));
 }
 main();

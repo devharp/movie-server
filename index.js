@@ -15,7 +15,7 @@ app.get('/movies', async (req, res) => {
 app.post('/auth', (req, res) => {
     const { username, password } = req.body;
     console.log({ username, password });
-    if (username === 'admin' && password === 'd33g!etal') {
+    if (username === 'admin' && password === 'admin') {
         return res.send({ message: 'SUCCESS' });
     }
     return res.send({ message: 'FAILED' });
